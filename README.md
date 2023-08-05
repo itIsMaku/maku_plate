@@ -8,7 +8,7 @@ fivem script for taking off / putting on plate, uses [ox_inventory](https://gith
 
 ```lua
 ['vehicle_plate'] = {
-    label = 'SPZ',
+    label = 'License plate',
 	weight = 1,
 	stack = false,
 	client = {
