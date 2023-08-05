@@ -3,8 +3,8 @@ local inventory = exports.ox_inventory
 function getClosestVehicleToPlayer(plyPos, radius)
     local retval, statusCode = nil, 'unk'
 
-    if GetClosestVehicle(plyPos.x, plyPos.y, plyPos.z, radius and radius or 2.0, 0, 23) then
-        retval = GetClosestVehicle(plyPos.x, plyPos.y, plyPos.z, radius and radius or 2.0, 0, 23)
+    if GetClosestVehicle(plyPos.x, plyPos.y, plyPos.z, radius and radius or CLOSEST_VEHICLE_RANGE, 0, 23) then
+        retval = GetClosestVehicle(plyPos.x, plyPos.y, plyPos.z, radius and radius or CLOSEST_VEHICLE_RANGE, 0, 23)
         statusCode = 'found_vehicle'
     end
 
@@ -29,7 +29,6 @@ exports('putOn', putOn)
 
 exports('itemUsage', function(data, slot)
     local vehicle, statusCode = getClosestVehicleToPlayer(GetEntityCoords(PlayerPedId()))
-    print(vehicle, statusCode)
     if DoesEntityExist(vehicle) then
         if statusCode == 'found_vehicle' then
             putOn(vehicle, slot.metadata.plate)

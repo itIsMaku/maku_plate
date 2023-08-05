@@ -11,3 +11,4 @@ ALLOWED_TYPES = {
     ['train'] = false
 }
 TARGET_TAKE_OFF = 'Take off plate'
+CLOSEST_VEHICLE_RANGE = 5.0

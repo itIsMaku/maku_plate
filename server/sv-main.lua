@@ -49,7 +49,7 @@ RegisterNetEvent('maku_plate:server:puton', function(netId, plate)
 
     local items = inventory:GetInventoryItems(source)
     local found = false
-    for _, item in ipairs(items) do
+    for _, item in pairs(items) do
         if item.name == PLATE_ITEM and item.metadata ~= nil and item.metadata.plate == plate then
             found = true
             break
