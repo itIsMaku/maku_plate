@@ -69,17 +69,17 @@ if isResourcePresent('ox_target') then
         if resource ~= GetCurrentResourceName() then return end
         target:removeGlobalVehicle('takeoffplate')
     end)
+else
+    RegisterCommand('plate', function(source, args, raw)
+        local plyPed = PlayerPedId()
+        local plyPos = GetEntityCoords(plyPed)
+        local vehicle, statusCode = getClosestVehicleToPlayer(plyPos)
+
+        if DoesEntityExist(vehicle) then
+            local plate = GetVehicleNumberPlateText(vehicle)
+            takeOff(vehicle)
+        else
+            print('^1[error]^0 no vehicle found (command)')
+        end
+    end, false)
 end
-
--- RegisterCommand('takeoffplate', function(source, args, raw)
---     local plyPed = PlayerPedId()
---     local plyPos = GetEntityCoords(plyPed)
---     local vehicle, statusCode = getClosestVehicleToPlayer(plyPos)
-
---     if DoesEntityExist(vehicle) then
---         local plate = GetVehicleNumberPlateText(vehicle)
---         takeOff(vehicle)
---     else
---         print('^1[error]^0 no vehicle found (command)')
---     end
--- end, false)
