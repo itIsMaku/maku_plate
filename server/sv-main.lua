@@ -59,6 +59,12 @@ RegisterNetEvent('maku_plate:server:puton', function(netId, plate)
         return
     end
 
+    local playerPed = GetPlayerPed(source)
+    if DoesEntityExist(GetVehiclePedIsIn(playerPed)) then
+        print('^1[error]^0 player is in vehicle')
+        return
+    end
+
     local items = inventory:GetInventoryItems(source)
     local found = false
     for _, item in pairs(items) do
