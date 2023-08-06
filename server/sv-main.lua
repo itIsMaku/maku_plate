@@ -27,6 +27,18 @@ RegisterNetEvent('maku_plate:server:takeoff', function(netId)
         return
     end
 
+    startProgressbar('Taking off plate', 5000, source)
+    while getProgressbarStatus(source) == true do
+        Citizen.Wait(500)
+    end
+
+    local status = getProgressbarStatus(source)
+    if status == ABORTED_PROGRESSBAR then
+        print('^1[error]^0 progressbar aborted')
+        return
+    end
+    clearProgressbar(source)
+
     Entity(vehicle).state.plate = plate
     SetVehicleNumberPlateText(vehicle, '')
 
@@ -59,6 +71,19 @@ RegisterNetEvent('maku_plate:server:puton', function(netId, plate)
         print('^1[error]^0 item not found in inventory')
         return
     end
+
+
+    startProgressbar('Putting on plate', 5000, source)
+    while getProgressbarStatus(source) == true do
+        Citizen.Wait(500)
+    end
+
+    local status = getProgressbarStatus(source)
+    if status == ABORTED_PROGRESSBAR then
+        print('^1[error]^0 progressbar aborted')
+        return
+    end
+    clearProgressbar(source)
 
     local success = inventory:RemoveItem(source, PLATE_ITEM, 1, {
         plate = plate,

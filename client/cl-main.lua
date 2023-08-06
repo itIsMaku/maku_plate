@@ -11,6 +11,11 @@ function getClosestVehicleToPlayer(plyPos, radius)
     return retval, statusCode
 end
 
+function isResourcePresent(resourceName)
+    local state = GetResourceState(resourceName)
+    return state == 'started' or state == 'starting'
+end
+
 local function takeOff(vehicle)
     local netId = NetworkGetNetworkIdFromEntity(vehicle)
     TriggerServerEvent('maku_plate:server:takeoff', netId)
@@ -37,11 +42,6 @@ exports('itemUsage', function(data, slot)
         print('^1[error]^0 no vehicle found (itemUsage)')
     end
 end)
-
-local function isResourcePresent(resourceName)
-    local state = GetResourceState(resourceName)
-    return state == 'started' or state == 'starting'
-end
 
 if isResourcePresent('ox_target') then
     local target = exports.ox_target
