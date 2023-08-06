@@ -1,7 +1,7 @@
 fx_version 'cerulean'
 games { 'gta5' }
 author 'maku#5434'
-version '1.0'
+version '1.1'
 lua54 'yes'
 repository 'itIsMaku/maku_plate'
 
