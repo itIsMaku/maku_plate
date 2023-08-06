@@ -7,7 +7,17 @@ RegisterNetEvent('maku_plate:client:startProgressBar', function(text, duration)
             duration = duration,
             label = text,
             useWhileDead = false,
-            canCancel = true
+            canCancel = true,
+            anim = {
+                dict = 'mini@repair',
+                clip = 'fixing_a_player'
+            },
+            disable = {
+                move = true,
+                mouse = true,
+                car = true,
+                combat = true
+            }
         }) then
         TriggerServerEvent('maku_plate:client:progressbar:complete')
     else
